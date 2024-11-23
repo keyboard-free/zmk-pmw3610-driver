@@ -633,23 +633,27 @@ static int pmw3610_report_data(const struct device *dev) {
     int16_t movement_size = abs(raw_x) + abs(raw_y);
     float speed_multiplier = 1.0; 
     if (movement_size > 160) {
-        speed_multiplier = 7.5;
+        speed_multiplier = 10;
     }else if (movement_size > 120) {
         speed_multiplier = 5.0;
     }else if (movement_size > 80) {
         speed_multiplier = 3.0;
     }else if (movement_size > 40) {
         speed_multiplier = 1.5;
-    }else if (movement_size > 5) {
+    }else if (movement_size > 6) {
         speed_multiplier = 1.0;
+    }else if (movement_size > 5) {
+        speed_multiplier = 0.9;
     }else if (movement_size > 4) {
         speed_multiplier = 0.8;
     }else if (movement_size > 3) {
-        speed_multiplier = 0.4;
+        speed_multiplier = 0.7;
     }else if (movement_size > 2) {
-        speed_multiplier = 0.2;
+        speed_multiplier = 0.5;
     }else if (movement_size > 1) {
-        speed_multiplier = 0.1;
+        speed_multiplier = 0.3;
+    }else {
+        speed_multiplier = 0.2;
     }
     raw_x = raw_x * speed_multiplier;
     raw_y = raw_y * speed_multiplier;
